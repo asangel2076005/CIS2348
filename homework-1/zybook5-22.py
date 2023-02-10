@@ -16,8 +16,8 @@ Car wax -- $12
 """)
 
 first_service = input("Select first service:\n")
-second_service = input("Select second service:\n\n")
-print("Davy's auto shop invoice\n")
+second_service = input("Select second service:\n")
+print("Davy's auto shop invoice\n\n")
 
 if first_service == "Oil change":
     print(f"Service 1: {first_service}, ${shop_services[first_service]}")
