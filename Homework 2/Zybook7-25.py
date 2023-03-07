@@ -18,3 +18,8 @@ def exact_change(user_change):
     num_pennies = user_change
 
     return num_dollars, num_quarters, num_dimes, num_nickels, num_pennies
+
+
+if __name__ == '__main__':
+    input_val = int(input())
+    num_dollars, num_quarters, num_dimes, num_nickels, num_pennies = exact_change(input_val)
