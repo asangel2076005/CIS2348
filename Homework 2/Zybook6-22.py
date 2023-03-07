@@ -17,3 +17,6 @@ for x in range(-10, 10):
         if ((a * x) + (b * y) == c) and ((d * x) + (e * y) == f):
             check = True
             print(f"{x} {y}")
+
+if check == False:
+    print("No solution")
