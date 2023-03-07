@@ -29,3 +29,21 @@ def month_conversion(user_month):
         return None
 
     return month_int
+
+
+if __name__ == "__main__":
+    import datetime
+
+    # gets the value of the current date
+    current_date = datetime.date.today()
+    current_date_formatted = current_date.strftime("%m/%d/%Y")
+
+    input_file = input("Enter file name: ")
+
+    user_file = open(input_file, "r")
+    contents = []
+
+    # read each lines
+    for line in user_file:
+        contents.append(line)
+    user_file.close()
