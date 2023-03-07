@@ -47,3 +47,27 @@ if __name__ == "__main__":
     for line in user_file:
         contents.append(line)
     user_file.close()
+
+    # removes newline characters
+    dates = []
+    for content in contents:
+        dates.append(content.strip())
+
+    # removes unwanted dates based on their format
+    pseudo_allowed_dates = []
+    for date in dates:
+        month = month_conversion(date.split()[0])
+        if month is not None:
+            day_comma = date.split()[1][-1]
+            if day_comma == ",":  # if the day has a comma after it, then include it, otherwise dispose of it as well
+                pseudo_allowed_dates.append(date)
+        else:
+            continue
+
+    # converts allowed dates into the new format
+    converted_dates = []
+    for date in pseudo_allowed_dates:
+        new_date = date.split(" ")
+        new_date[0] = str(month_conversion(new_date[0]))
+        new_date[1] = new_date[1].replace(",", "")
+        converted_dates.append("/".join(new_date))
