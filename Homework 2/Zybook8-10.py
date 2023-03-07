@@ -2,11 +2,7 @@
 
 def palindrome(text):
     text = text.lower()
-    for letter in text:
-        if letter.isalnum():
-            "".join(letter)
-        else:
-            continue
+    text = ''.join(letter for letter in text if letter.isalnum())
 
     if text == text[::-1]:
         return print(f"{text} is a palindrome")
