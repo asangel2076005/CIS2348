@@ -1,9 +1,11 @@
+# Angelo Angel (2076005)
+
 user_password = input()
 user_strong_password = ''
 
 for char in user_password:
     if char == 'i':
-        user_strong_password = user_strong_password + '1'
+        user_strong_password = user_strong_password + '!'
     elif char == 'a':
         user_strong_password = user_strong_password + '@'
     elif char == 'm':
