@@ -71,3 +71,28 @@ if __name__ == "__main__":
         new_date[0] = str(month_conversion(new_date[0]))
         new_date[1] = new_date[1].replace(",", "")
         converted_dates.append("/".join(new_date))
+
+    # removes dates greater than the current date
+    allowed_dates = []
+    current_year = int(current_date_formatted.split("/")[2])
+    current_day = int(current_date_formatted.split("/")[1])
+    current_month = int(current_date_formatted.split("/")[0])
+    for dates in converted_dates:
+        year = int(dates.split("/")[2])
+        day = int(dates.split("/")[1])
+        month = int(dates.split("/")[0])
+        if year < current_year:
+            allowed_dates.append(dates)
+        elif year <= current_year:
+            if month < current_month:
+                allowed_dates.append(dates)
+            elif month <= current_month:
+                if day < current_day:
+                    allowed_dates.append(dates)
+                else:
+                    continue
+
+    # writes allowed converted dates into the new file
+    with open("parsedDates.txt", "w") as new_file:
+        for date in allowed_dates:
+            new_file.write(f"{date}\n")
