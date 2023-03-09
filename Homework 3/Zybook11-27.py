@@ -18,6 +18,31 @@ def output_roster(user_dictionary):
     print()
 
 
+# adds a pair to the current list
+def add_player(user_dictionary):
+    new_number = int(input("Enter a new player's jersey number:\n"))
+    while new_number < 0 or new_number > 99:
+        print("Must be between 0-99 (inclusive)")
+        new_number = int(input("Enter a new player's jersey number:\n"))
+
+    new_rating = int(input("Enter the new player's rating:\n"))
+    while new_rating < 1 or new_rating > 9:
+        print("Must be between 1-9 (inclusive)")
+        new_rating = int(input("Enter the new player's rating:\n"))
+
+    user_dictionary[new_number] = new_rating
+    sorted_user_dictionary = dict(sorted(user_dictionary.items()))
+    return sorted_user_dictionary
+
+
+# removes a pair based on their keys
+def remove_player(user_dictionary):
+    jersey_delete = int(input("Enter a jersey number:\n"))
+    print()
+    del user_dictionary[jersey_delete]
+    return user_dictionary
+
+
 if __name__ == "__main__":
     jersey_number = []
     jersey_rating = []
@@ -34,17 +59,29 @@ if __name__ == "__main__":
     jersey_pairs = dict(zip(jersey_number, jersey_rating))
     jersey_pairs_sorted = dict(sorted(jersey_pairs.items()))
 
-    print("ROSTER")
-    for number, rating in jersey_pairs_sorted.items():
-        print(f"Jersey number: {number}, Rating: {rating}")
-    print()
+    checker = True
+
+    if checker == True:
+        print("ROSTER")
+        for number, rating in jersey_pairs_sorted.items():
+            print(f"Jersey number: {number}, Rating: {rating}")
+        print()
 
     menu()
 
     user_choice = input("Choose an option:\n")
-    print()
-
     while user_choice != "q":
         if user_choice == "o":
-            output_roster(jersey_pairs_sorted)
+            if checker == False:
+                output_roster(jersey_pairs_sorted)
+        elif user_choice == "a":
+            if checker == False:
+                new_pair = add_player(jersey_pairs_sorted)
+                jersey_pairs_sorted = new_pair
+        elif user_choice == "d":
+            if checker == False:
+                print()
+                new_pair = remove_player(jersey_pairs_sorted)
+                jersey_pairs_sorted = new_pair
+        checker = False
         user_choice = input()
