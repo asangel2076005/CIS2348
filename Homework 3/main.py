@@ -2,33 +2,28 @@
 
 class Team:
     def __init__(self):
-        self.name = 'none'
-        self.wins = 0
-        self.losses = 0
+        self.team_name = 'none'
+        self.team_wins = 0
+        self.team_losses = 0
 
     def get_win_percentage(self):
-        percentage = self.wins / (self.wins + self.losses)
-        return percentage
-
-    def print_standing(self):
-        percentage = self.get_win_percentage()
-
-        print(f"Win percentage: {percentage:.2f}")
-        if percentage >= 0.50:
-            print(f"Congratulations, Team {self.name} has a winning average!")
-        else:
-            print(f"Team {self.name} has a losing average")
+        return self.team_wins / (self.team_wins + self.team_losses)
 
 
 if __name__ == "__main__":
     team = Team()
 
-    user_name = input()
-    user_wins = int(input())
-    user_losses = int(input())
+    team_name = input()
+    team_wins = int(input())
+    team_losses = int(input())
 
-    team.name = user_name
-    team.wins = user_wins
-    team.losses = user_losses
+    team.team_name = team_name
+    team.team_wins = team_wins
+    team.team_losses = team_losses
 
-    team.print_standing()
+    percentage = team.get_win_percentage()
+
+    if percentage >= 0.50:
+        print(f"Congratulations, Team {team.team_name} has a winning average!")
+    else:
+        print(f"Team {team.team_name} has a losing average.")
