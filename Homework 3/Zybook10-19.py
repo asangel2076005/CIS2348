@@ -6,7 +6,7 @@ class ItemToPurchase:
         self.item_name = "none"
         self.item_price = 0
         self.item_quantity = 0
-        self.item_description = "John"
+        self.item_description = "none"
 
     def print_item_description(self):
         print(f"{self.item_name}: {self.item_description}")
