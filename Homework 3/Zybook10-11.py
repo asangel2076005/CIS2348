@@ -1,12 +1,10 @@
-# Angelo Angel (2076005)
-
 class FoodItem:
 
-    def __init__(self, name="None", fat=0.0, carbs=0.0, protein=0.0):
+    def __init__(self, name=None, fat=0, carbs=0, protein=0 ):
         self.name = name
-        self.fat = fat
-        self.carbs = carbs
-        self.protein = protein
+        self.fat = 0
+        self.carbs = 0
+        self.protein = 0
 
     def get_calories(self, num_servings):
         calories = ((self.fat * 9) + (self.carbs * 4) + (self.protein * 4)) * num_servings
@@ -17,7 +15,6 @@ class FoodItem:
         print(f"   Fat: {self.fat:.2f} g")
         print(f"   Carbohydrates: {self.carbs:.2f} g")
         print(f"   Protein: {self.protein:.2f} g")
-
 
 if __name__ == "__main__":
     name = input()
