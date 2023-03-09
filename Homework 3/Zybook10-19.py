@@ -43,11 +43,19 @@ class ShoppingCart(ItemToPurchase):
         pass
 
 
+def print_menu(class_obj):
+    customer = class_obj()
+    return customer
+
+
 if __name__ == "__main__":
     customer = ShoppingCart()
-    customer.customer_name = "John Doe"  # input()
-    customer.current_date = "February 1, 2016"  # input()
-    customer.item_quantity = "8"  # int(input())
+    customer.customer_name = input("Enter customer's name:\n")
+    customer.current_date = input("Enter today's date:\n")
+    print()
 
-    print(f"{customer.customer_name}'s Shopping Cart - {customer.current_date}")
-    print(f"Number of Items: {customer.item_quantity}")
+    print(f"Customer name: {customer.customer_name}")
+    print(f"Today's date: {customer.current_date}")
+
+    customer = print(ShoppingCart)
+    print(customer)
