@@ -1,5 +1,3 @@
-# Angelo Angel (2076005)
-
 user_input = input()
 tokens = user_input.split()
 token_digits = []
@@ -14,3 +12,5 @@ for num in token_digits:
         continue
     else:
         print(f"{num} ", end="")
+print()
+
