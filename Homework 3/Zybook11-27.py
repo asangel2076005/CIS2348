@@ -31,4 +31,5 @@ if __name__ == "__main__":
     for number, rating in jersey_pairs_sorted.items():
         print(f"Jersey number: {number}, Rating: {rating}")
     print()
+
     menu()

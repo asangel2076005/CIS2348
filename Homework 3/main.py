@@ -11,6 +11,13 @@ def menu():
     print()
 
 
+def output_roster(user_dictionary):
+    print("ROSTER")
+    for number, rating in user_dictionary.items():
+        print(f"Jersey number: {number}, Rating: {rating}")
+    print()
+
+
 if __name__ == "__main__":
     jersey_number = []
     jersey_rating = []
@@ -31,4 +38,14 @@ if __name__ == "__main__":
     for number, rating in jersey_pairs_sorted.items():
         print(f"Jersey number: {number}, Rating: {rating}")
     print()
+
     menu()
+
+    user_choice = input("Choose an option:\n")
+    print()
+
+    while user_choice != "q":
+        if user_choice == "o":
+            output_roster(jersey_pairs_sorted)
+        user_choice = input()
+
