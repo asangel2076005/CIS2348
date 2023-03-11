@@ -80,10 +80,23 @@ class ShoppingCart:
             self.cart_items[i].print_item_description()
 
 
+def print_menu(customer_cart):
+    cart = customer_cart
+    menu = (
+        "\nMenu\n"
+        "a - Add item to cart\n"
+        "r - Remove item from cart\n"
+        "c - Change item quantity\n"
+        "i - Output items' descriptions\n"
+        "o - Output shopping cart\n"
+        "q - Quit\n"
+    )
+    user_choice = ""
+
+
 if __name__ == "__main__":
     customer_name = input("Enter customer's name:\n")
     date_today = input("Enter today's date:\n")
     print()
     customer = ShoppingCart(customer_name, date_today)
-    print(f"Customer name: {customer.customer_name}")
-    print(f"Today's date: {customer.current_date}")
+    print_menu(customer)
