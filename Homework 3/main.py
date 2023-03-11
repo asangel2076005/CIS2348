@@ -1,89 +1,84 @@
-# Angelo Angel (2076005)
+class ItemToPurchase:
 
-def menu():
-    print("MENU")
-    print("a - Add player")
-    print("d - Remove player")
-    print("u - Update player rating")
-    print("r - Output players above a rating")
-    print("o - Output roster")
-    print("q - Quit")
-    print()
+    def __init__(self, name="none", price=0.0, quantity=0, description="none"):
+        self.item_name = name
+        self.item_price = price
+        self.item_quantity = quantity
+        self.item_description = description
 
+    def get_item_cost(self):
+        item_cost = self.item_price * self.item_quantity
+        return item_cost
 
-def output_roster(user_dictionary):
-    print("ROSTER")
-    for number, rating in user_dictionary.items():
-        print(f"Jersey number: {number}, Rating: {rating}")
-    print()
+    def print_item_cost(self):
+        print(f"{self.item_name} {self.item_quantity} @ ${self.item_price:.0f} = ${self.get_item_cost():.0f}")
 
-
-# adds a pair to the current list
-def add_player(user_dictionary):
-    new_number = int(input("Enter a new player's jersey number:\n"))
-    while new_number < 0 or new_number > 99:
-        print("Must be between 0-99 (inclusive)")
-        new_number = int(input("Enter a new player's jersey number:\n"))
-
-    new_rating = int(input("Enter the new player's rating:\n"))
-    while new_rating < 1 or new_rating > 9:
-        print("Must be between 1-9 (inclusive)")
-        new_rating = int(input("Enter the new player's rating:\n"))
-
-    user_dictionary[new_number] = new_rating
-    sorted_user_dictionary = dict(sorted(user_dictionary.items()))
-    return sorted_user_dictionary
+    def print_item_description(self):
+        print(f"{self.item_name}: {self.item_description}.")
 
 
-# removes a pair based on their keys
-def remove_player(user_dictionary):
-    jersey_delete = int(input("Enter a jersey number:\n"))
-    print()
-    del user_dictionary[jersey_delete]
-    return user_dictionary
+class ShoppingCart:
+
+    def __init__(self, customer_name="none", date="January 1, 2016"):
+        self.customer_name = customer_name
+        self.current_date = date
+        self.cart_items = []
+
+    def add_item(self, item):
+        self.cart_items.append(item)
+
+    def remove_item(self, item_name):
+        item_exist = False
+        for i in range(len(self.cart_items)):
+            if self.cart_items[i].item_name == item_name:
+                del self.cart_items[i]
+                item_exist = True
+                break
+        if not item_exist:
+            print("Item is not found in card. Nothing removed")
+
+    def modify_item(self, item):
+        item_exist = False
+        for i in range(len(self.cart_items)):
+            if self.cart_items[i].item_name == item.item_name:
+                del self.cart_items[i]
+                item_exist = True
+                break
+        if not item_exist:
+            print("Item is not found in card. Nothing modified")
+
+    def get_num_items_in_cart(self):
+        quantity = 0
+        for i in range(len(self.cart_items)):
+            quantity = quantity + self.cart_items[i].item_quantity
+        return quantity
+
+    def get_cost_of_cart(self):
+        cost = 0
+        for i in range(len(self.cart_items)):
+            cost = cost + self.cart_items[i].item_price * self.cart_items[i].item_quantity
+        return cost
+
+    def print_total(self):
+        if len(self.cart_items) == 0:
+            print("SHOPPING CART IS EMPTY")
+        else:
+            print(f"{self.customer_name}'s Shopping Cart - {self.current_date}")
+            print(f"Number of items: {self.get_num_items_in_cart()}")
+            print()
+            print("Item Descriptions")
+            for i in range(len(self.cart_items)):
+                print(f"{self.cart_items[i].item_name} {self.cart_items[i].item_quantity} @ "
+                      f"${self.cart_items[i].item_price} = "
+                      f"${self.cart_items[i].item_price * self.cart_items[i].item_quantity}")
+
+    def print_description(self):
+        print(f"{self.customer_name}'s Shopping Cart - {self.current_date}")
+        print()
+        print("Item Descriptions")
+        for i in range(len(self.cart_items)):
+            self.cart_items[i].print_item_description()
 
 
 if __name__ == "__main__":
-    jersey_number = []
-    jersey_rating = []
-
-    for i in range(1, 5 + 1):
-        user_number = int(input(f"Enter player {i}'s jersey number:\n"))
-        user_rating = int(input(f"Enter player {i}'s rating:\n"))
-        print()
-        if (0 <= user_number <= 99) and (1 <= user_rating <= 9):
-            jersey_number.append(user_number)
-            jersey_rating.append(user_rating)
-
-    # sorts pairs based on their keys
-    jersey_pairs = dict(zip(jersey_number, jersey_rating))
-    jersey_pairs_sorted = dict(sorted(jersey_pairs.items()))
-
-    checker = True
-
-    if checker == True:
-        print("ROSTER")
-        for number, rating in jersey_pairs_sorted.items():
-            print(f"Jersey number: {number}, Rating: {rating}")
-        print()
-
-    menu()
-
-    user_choice = input("Choose an option:\n")
-    while user_choice != "q":
-        if user_choice == "o":
-            if checker == False:
-                output_roster(jersey_pairs_sorted)
-        elif user_choice == "a":
-            if checker == False:
-                new_pair = add_player(jersey_pairs_sorted)
-                jersey_pairs_sorted = new_pair
-        elif user_choice == "d":
-            if checker == False:
-                print()
-                new_pair = remove_player(jersey_pairs_sorted)
-                jersey_pairs_sorted = new_pair
-        checker = False
-        user_choice = input()
-
-
+    pass
