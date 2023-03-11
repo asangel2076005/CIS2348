@@ -81,4 +81,7 @@ class ShoppingCart:
 
 
 if __name__ == "__main__":
-    pass
+    customer_name = input("Enter customer's name:\n")
+    date_today = input("Enter today's date:\n")
+    print()
+    customer = ShoppingCart(customer_name, date_today)
