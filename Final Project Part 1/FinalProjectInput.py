@@ -14,7 +14,7 @@ class CsvFiles:
                         continue
                     else:
                         self.dict[item] = row[1:]
-        sorted_dict = dict(sorted(self.dict.items(), key=sort_manufacturer))
+        sorted_dict = dict(sorted(self.dict.items(), key=sort_by_name))
         return sorted_dict
 
     def output_items(self):
@@ -22,7 +22,7 @@ class CsvFiles:
             print(f"{keys}: {', '.join(values)}")
 
 
-def sort_manufacturer(item):
+def sort_by_name(item):
     return item[1]
 
 
