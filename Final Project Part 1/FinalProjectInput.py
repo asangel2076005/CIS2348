@@ -1,3 +1,5 @@
+def sort_manufacturer(item):
+    return item[1]
 
 
 if __name__ == "__main__":
@@ -11,5 +13,14 @@ if __name__ == "__main__":
                 if item != row[0]:
                     continue
                 else:
-                    csv_files_dict[item] = [row[1:]]
-    print(csv_files_dict)
+                    csv_files_dict[item] = row[1:]
+
+    print("Unsorted Dictionary")
+    for keys, values in csv_files_dict.items():
+        print(f"{keys}: {values}")
+
+    sorted_csv_files_dict = dict(sorted(csv_files_dict.items(), key=sort_manufacturer))
+
+    print("Sorted Dictionary")
+    for keys, values in sorted_csv_files_dict.items():
+        print(f"{keys}: {values}")
