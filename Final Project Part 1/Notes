@@ -1,0 +1,21 @@
+Damaged Inventory:
+ID, Manufacturer, Device, Price, Date
+
+Past Service Inventory:
+ID, Manufacturer, Device, Price, Date
+
+Full Inventory:
+ID, Manufacturer, Device, Price, Date, (situation: damaged)
+
+Laptop Inventory:
+ID, Manufacturer, Price, Date, (situation: damaged)
+
+Manufacturer List:
+ID, Manufacturer, Device, (situation: damaged)
+
+Price List:
+ID, Price
+
+Service Dates List:
+ID, Date
+

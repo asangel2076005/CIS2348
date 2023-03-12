@@ -1,12 +1,15 @@
 
 
-
 if __name__ == "__main__":
     import csv
-
-    print("Full Inventory List")
-    full_inventory_input = "FullInventory.csv"  # input("Enter Full Inventory CSV File: ")
-
-    with open("FullInventory.csv", "r") as full_inventory_file:
-        items = csv.reader(full_inventory_file, delimiter=",")
-        rows = list(items)
+    input_csv_file = input("Enter csv name: ")
+    csv_files_dict = {}
+    with open(input_csv_file, "r") as csv_file:
+        contents = csv.reader(csv_file, delimiter=",")
+        for row in contents:
+            for item in row:
+                if item != row[0]:
+                    continue
+                else:
+                    csv_files_dict[item] = [row[1:]]
+    print(csv_files_dict)
