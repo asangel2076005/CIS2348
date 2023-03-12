@@ -92,19 +92,16 @@ class ShoppingCart:
 
 def print_menu(customer_cart):
     cart = customer_cart
-    menu = (
-        "\nMENU\n"
-        "a - Add item to cart\n"
-        "r - Remove item from cart\n"
-        "c - Change item quantity\n"
-        "i - Output items' descriptions\n"
-        "o - Output shopping cart\n"
-        "q - Quit\n"
-    )
     user_choice = ""
 
     while user_choice != "q":
-        print(menu)
+        print("\nMENU")
+        print("a - Add item to cart")
+        print("r - Remove item from cart")
+        print("c - Change item quantity")
+        print("i - Output items' descriptions")
+        print("o - Output shopping cart")
+        print("q - Quit\n")
         user_choice = input("Choose an option:\n")
         while (
             user_choice != "a" and user_choice != "r" and user_choice != "c" and user_choice != "i" and user_choice != "o" and user_choice != "q"
