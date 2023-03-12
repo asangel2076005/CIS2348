@@ -3,6 +3,7 @@ class CsvFiles:
     def __init__(self):
         self.file_name = "none"
         self.dict = {}
+        self.sorted_dict = {}
 
     def _sorted_dict(self):
         import csv
@@ -14,10 +15,12 @@ class CsvFiles:
                         continue
                     else:
                         self.dict[item] = row[1:]
-        sorted_csv_files_dict = dict(sorted(self.dict.items(), key=sort_manufacturer))
-        return sorted_csv_files_dict.items()
+        self.sorted_dict = dict(sorted(self.dict.items(), key=sort_manufacturer))
+        return self.sorted_dict.items()
 
     def output_items(self):
+        print(self._sorted_dict())
+        print(self.sorted_dict)
         for keys, values in self._sorted_dict():
             print(f"{keys}: {values}")
 
