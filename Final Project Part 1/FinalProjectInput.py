@@ -3,9 +3,8 @@ class CsvFiles:
     def __init__(self):
         self.file_name = "none"
         self.dict = {}
-        self.sorted_dict = {}
 
-    def _sorted_dict(self):
+    def sorted_dict(self):
         import csv
         with open(self.file_name, "r") as csv_file:
             contents = csv.reader(csv_file, delimiter=",")
@@ -15,14 +14,12 @@ class CsvFiles:
                         continue
                     else:
                         self.dict[item] = row[1:]
-        self.sorted_dict = dict(sorted(self.dict.items(), key=sort_manufacturer))
-        return self.sorted_dict.items()
+        sorted_dict = dict(sorted(self.dict.items(), key=sort_manufacturer))
+        return sorted_dict
 
     def output_items(self):
-        print(self._sorted_dict())
-        print(self.sorted_dict)
-        for keys, values in self._sorted_dict():
-            print(f"{keys}: {values}")
+        for keys, values in self.sorted_dict().items():
+            print(f"{keys}: {', '.join(values)}")
 
 
 def sort_manufacturer(item):
@@ -35,6 +32,7 @@ if __name__ == "__main__":
     # ManufacturerList.csv
     manufacturer_list = CsvFiles()
     manufacturer_list.file_name = input("Enter manufacturer list file name:\n")
+    print(manufacturer_list.sorted_dict())
     manufacturer_list.output_items()
     print()
 
