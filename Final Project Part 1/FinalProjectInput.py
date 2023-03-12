@@ -29,6 +29,20 @@ def sort_manufacturer(item):
 if __name__ == "__main__":
     import csv
 
-    manufacturer = CsvFiles()
-    manufacturer.file_name = input("Enter Manufacturer File name:\n")
-    manufacturer.output_items()
+    # ManufacturerList.csv
+    manufacturer_list = CsvFiles()
+    manufacturer_list.file_name = input("Enter manufacturer list file name:\n")
+    manufacturer_list.output_items()
+    print()
+
+    # PriceList.csv
+    price_list = CsvFiles()
+    price_list.file_name = input("Enter price list file name:\n")
+    price_list.output_items()
+    print()
+
+    # ServiceDatesList.csv
+    service_dates_list = CsvFiles()
+    service_dates_list.file_name = input("Enter service dates list file name:\n")
+    service_dates_list.output_items()
+    print()
