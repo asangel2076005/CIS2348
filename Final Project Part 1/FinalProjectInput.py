@@ -4,7 +4,7 @@ class CsvFiles:
         self.file_name = "none"
         self.dict = {}
 
-    def sorted_dict(self):
+    def _sorted_dict(self):
         import csv
         with open(self.file_name, "r") as csv_file:
             contents = csv.reader(csv_file, delimiter=",")
@@ -18,7 +18,7 @@ class CsvFiles:
         return sorted_csv_files_dict.items()
 
     def output_items(self):
-        for keys, values in self.sorted_dict():
+        for keys, values in self._sorted_dict():
             print(f"{keys}: {values}")
 
 
