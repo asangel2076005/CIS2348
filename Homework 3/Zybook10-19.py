@@ -93,6 +93,23 @@ def print_menu(customer_cart):
     )
     user_choice = ""
 
+    while user_choice != "q":
+        print(menu)
+        user_choice = input("Choose an option:\n")
+        while (
+                user_choice != "a" and user_choice != "r" and user_choice != "c" and user_choice != "i" and user_choice != "o" and user_choice != "q"
+        ):
+            user_choice = input("Choose an option:\n")
+
+        if user_choice == "a":
+            print("\nADD ITEM TO CART")
+            name = input("Enter the item name:\n")
+            description = input("Enter the item description:\n")
+            price = int(input('Enter the item price:\n'))
+            quantity = int(input('Enter the item quantity:\n'))
+            purchase_item = ItemToPurchase(name, price, quantity, description)
+            cart.add_item(purchase_item)
+
 
 if __name__ == "__main__":
     customer_name = input("Enter customer's name:\n")
@@ -100,4 +117,3 @@ if __name__ == "__main__":
     print()
     customer = ShoppingCart(customer_name, date_today)
     print_menu(customer)
-
