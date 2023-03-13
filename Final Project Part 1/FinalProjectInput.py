@@ -58,21 +58,22 @@ if __name__ == "__main__":
     service_dates_list.output_items()
     print()
 
+    # Combines all csv files and places all their contents with their respective ID's
+    combined_list = zip(manufacturer_list.sorted_list_of_items(),
+                        price_list.sorted_list_of_items(),
+                        service_dates_list.sorted_list_of_items())
+    full_inventory_list = []
+    for row_x, row_y, row_z in combined_list:
+        for item_x, item_y, item_z in zip(row_x, row_y, row_z):
+            if item_x == item_y == item_z:
+                full_inventory_list.append([item_x, row_x[1], row_y[1], row_z[1]])
+
+    # Places items by order of: item id, manufacturer name, item type, price, service date, and situation
+    full_inventory = []
+    for row in full_inventory_list:
+        full_inventory.append([row[0], row[1][0], row[1][1], row[2][0], row[3][0], row[1][2]])
+
     # Writes FullInventory.csv File
     with open("FullInventory.csv", "w", newline="") as full_inventory_file:
         full_inventory_writer = csv.writer(full_inventory_file)
-        combined_list = zip(manufacturer_list.sorted_list_of_items(), price_list.sorted_list_of_items(), service_dates_list.sorted_list_of_items())
-
-        full_inventory_list = []
-        for row_x, row_y, row_z in combined_list:
-            for item_x, item_y, item_z in zip(row_x, row_y, row_z):
-                if item_x == item_y == item_z:
-                    full_inventory_list.append([item_x, row_x[1], row_y[1], row_z[1]])
-
-        # Places items by order of: item id, manufacturer name, item type, price, service date, and situation
-        full_inventory = []
-        for row in full_inventory_list:
-            full_inventory.append([row[0], row[1][0], row[1][1], row[2][0], row[3][0], row[1][2]])
-
-        # Writes FullInventory.csv File
         full_inventory_writer.writerows(sorted(full_inventory, key=sort_by_name))
