@@ -76,5 +76,3 @@ if __name__ == "__main__":
 
         # Writes FullInventory.csv File
         full_inventory_writer.writerows(sorted(full_inventory, key=sort_by_name))
-
-
