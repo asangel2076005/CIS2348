@@ -39,11 +39,13 @@ if __name__ == "__main__":
     # PriceList.csv
     price_list = CsvFiles()
     price_list.file_name = input("Enter price list file name:\n")
+    print(price_list.sorted_dict())
     price_list.output_items()
     print()
 
     # ServiceDatesList.csv
     service_dates_list = CsvFiles()
     service_dates_list.file_name = input("Enter service dates list file name:\n")
+    print(service_dates_list.sorted_dict())
     service_dates_list.output_items()
     print()
