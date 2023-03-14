@@ -84,6 +84,7 @@ if __name__ == "__main__":
     for row in full_inventory_list:
         full_inventory.append([row[0], row[1][0], row[1][1], row[2][0], row[3][0], row[1][2]])
 
+    # Sorts full_inventory by both name and date
     full_inventory_by_dates = sorted(full_inventory, key=sort_by_name_date)
 
     # Writes FullInventory.csv File
