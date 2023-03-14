@@ -60,15 +60,15 @@ if __name__ == "__main__":
 
     # ManufacturerList.csv
     manufacturer_list = CsvFiles()
-    manufacturer_list.file_name = "ManufacturerList.csv"  # input("Enter manufacturer list file name:\n")
+    manufacturer_list.file_name = input("Enter manufacturer list file name:\n")
 
     # PriceList.csv
     price_list = CsvFiles()
-    price_list.file_name = "PriceList.csv"  # input("Enter price list file name:\n")
+    price_list.file_name = input("Enter price list file name:\n")
 
     # ServiceDatesList.csv
     service_dates_list = CsvFiles()
-    service_dates_list.file_name = "ServiceDatesList.csv"  # input("Enter service dates list file name:\n")
+    service_dates_list.file_name = input("Enter service dates list file name:\n")
 
     # Combines all csv files and places all their contents with their respective ID's
     combined_list = zip(manufacturer_list.sorted_list_of_items(),
