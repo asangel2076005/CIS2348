@@ -18,9 +18,16 @@ ID, Manufacturer, Device, Price, Date
 Past Service Inventory:
 ID, Manufacturer, Device, Price, Date
 
-Full Inventory:
+Full Inventory: DONE
 ID, Manufacturer, Device, Price, Date, (situation: damaged)
 
 Laptop Inventory:
 ID, Manufacturer, Price, Date, (situation: damaged)
+
+
+
+Inputs to copy:
+ManufacturerList.csv
+PriceList.csv
+ServiceDatesList.csv
 
