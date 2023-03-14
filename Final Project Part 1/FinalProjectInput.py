@@ -164,7 +164,7 @@ if __name__ == "__main__":
     damaged_inventory = []
     for item in full_inventory:
         if "damaged" in item:
-            damaged_inventory.append(item)
+            damaged_inventory.append([item[0], item[1], item[2], item[3], item[4]])
 
     # Writes DamagedInventory.csv
     with open("DamagedInventory.csv", "w", newline="") as damaged_inventory_file:
