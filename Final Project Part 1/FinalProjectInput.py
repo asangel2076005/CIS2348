@@ -1,3 +1,5 @@
+# Angelo Angel (2076005)
+
 class CsvFiles:
 
     def __init__(self):
@@ -109,14 +111,14 @@ if __name__ == "__main__":
 
     # Writes PhoneInventory.csv
     with open("PhoneInventory.csv", "w", newline="") as phone_inventory_file:
-        # Sorts laptop_inventory by id
+        # Sorts phone_inventory by id
         phone_inventory_by_id = sorted(phone_list, key=sort_by_id)
         phone_inventory_writer = csv.writer(phone_inventory_file)
         phone_inventory_writer.writerows(phone_inventory_by_id)
 
     # Writes TowerInventory.csv
     with open("TowerInventory.csv", "w", newline="") as tower_inventory_file:
-        # Sorts laptop_inventory by id
+        # Sorts tower_inventory by id
         tower_inventory_by_id = sorted(tower_list, key=sort_by_id)
         tower_inventory_writer = csv.writer(tower_inventory_file)
         tower_inventory_writer.writerows(tower_inventory_by_id)
