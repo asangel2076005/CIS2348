@@ -32,22 +32,26 @@ class CsvFiles:
         return sorted_list_of_items
 
 
-def sort_by_name(item):
-    return item[1]
+def sort_by_name(name):
+    return name[1]
 
 
-def sort_by_date(item):
+def sort_by_date(date):
     from datetime import datetime
-    return datetime.strptime(item[4], '%m/%d/%Y')
+    return datetime.strptime(date[4], '%m/%d/%Y')
 
 
-def sort_by_name_date(item):
+def sort_by_name_date(name_date):
     from datetime import datetime
-    return item[1], datetime.strptime(item[4], '%m/%d/%Y')
+    return name_date[1], datetime.strptime(name_date[4], '%m/%d/%Y')
 
 
-def sort_by_id(item):
-    return item[0]
+def sort_by_id(i_d):
+    return i_d[0]
+
+
+def sort_by_price(price):
+    return int(price[3])
 
 
 if __name__ == "__main__":
@@ -156,4 +160,15 @@ if __name__ == "__main__":
         past_service_date_writer = csv.writer(past_service_date_file)
         past_service_date_writer.writerows(past_service_date_by_date)
 
+    # This section appends damaged items only
+    damaged_inventory = []
+    for item in full_inventory:
+        if "damaged" in item:
+            damaged_inventory.append(item)
 
+    # Writes DamagedInventory.csv
+    with open("DamagedInventory.csv", "w", newline="") as damaged_inventory_file:
+        # Sorts damaged_inventory by price
+        damaged_inventory_by_price = sorted(damaged_inventory, key=sort_by_price, reverse=True)
+        damaged_inventory_writer = csv.writer(damaged_inventory_file)
+        damaged_inventory_writer.writerows(damaged_inventory_by_price)
