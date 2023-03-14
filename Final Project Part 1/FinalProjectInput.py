@@ -14,7 +14,7 @@ class CsvFiles:
                         continue
                     else:
                         self.dict[item] = row[1:]
-        sorted_dict = dict(sorted(self.dict.items(), key=sort_by_name, reverse=True))
+        sorted_dict = dict(sorted(self.dict.items(), key=sort_by_name))
         return sorted_dict
 
     def output_items(self):
@@ -26,7 +26,7 @@ class CsvFiles:
         return list_of_items
 
     def sorted_list_of_items(self):
-        sorted_list_of_items = sorted(self.list_of_items(), reverse=True)
+        sorted_list_of_items = sorted(self.list_of_items())
         return sorted_list_of_items
 
 
@@ -34,8 +34,19 @@ def sort_by_name(item):
     return item[1]
 
 
+def sort_by_date(item):
+    from datetime import datetime
+    return datetime.strptime(item[4], '%m/%d/%Y')
+
+
+def sort_by_name_date(item):
+    from datetime import datetime
+    return item[1], datetime.strptime(item[4], '%m/%d/%Y')
+
+
 if __name__ == "__main__":
     import csv
+    from datetime import datetime
 
     # ManufacturerList.csv
     manufacturer_list = CsvFiles()
@@ -73,7 +84,9 @@ if __name__ == "__main__":
     for row in full_inventory_list:
         full_inventory.append([row[0], row[1][0], row[1][1], row[2][0], row[3][0], row[1][2]])
 
+    full_inventory_by_dates = sorted(full_inventory, key=sort_by_name_date)
+
     # Writes FullInventory.csv File
     with open("FullInventory.csv", "w", newline="") as full_inventory_file:
         full_inventory_writer = csv.writer(full_inventory_file)
-        full_inventory_writer.writerows(sorted(full_inventory, key=sort_by_name))
+        full_inventory_writer.writerows(full_inventory_by_dates)
