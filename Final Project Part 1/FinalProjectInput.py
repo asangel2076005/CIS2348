@@ -52,19 +52,19 @@ def sort_by_id(item):
 
 if __name__ == "__main__":
     import csv
-    from datetime import datetime
+    import datetime
 
     # ManufacturerList.csv
     manufacturer_list = CsvFiles()
-    manufacturer_list.file_name = input("Enter manufacturer list file name:\n")
+    manufacturer_list.file_name = "ManufacturerList.csv"  # input("Enter manufacturer list file name:\n")
 
     # PriceList.csv
     price_list = CsvFiles()
-    price_list.file_name = input("Enter price list file name:\n")
+    price_list.file_name = "PriceList.csv"  # input("Enter price list file name:\n")
 
     # ServiceDatesList.csv
     service_dates_list = CsvFiles()
-    service_dates_list.file_name = input("Enter service dates list file name:\n")
+    service_dates_list.file_name = "ServiceDatesList.csv"  # input("Enter service dates list file name:\n")
 
     # Combines all csv files and places all their contents with their respective ID's
     combined_list = zip(manufacturer_list.sorted_list_of_items(),
@@ -122,3 +122,38 @@ if __name__ == "__main__":
         tower_inventory_by_id = sorted(tower_list, key=sort_by_id)
         tower_inventory_writer = csv.writer(tower_inventory_file)
         tower_inventory_writer.writerows(tower_inventory_by_id)
+
+    # This section encompasses allowed dates that take place before today's date
+    current_date = datetime.date.today()
+    current_date_formatted = current_date.strftime("%m/%d/%Y")
+
+    # Splits the mm/dd/yyyy format into their respective positions of date and convert each to int
+    current_year = int(current_date_formatted.split("/")[2])
+    current_day = int(current_date_formatted.split("/")[1])
+    current_month = int(current_date_formatted.split("/")[0])
+
+    # Stores past service dates based on today's date into a new list
+    past_service_date = []
+    for item in full_inventory:
+        month = int(item[4].split("/")[0])
+        day = int(item[4].split("/")[1])
+        year = int(item[4].split("/")[2])
+        if year < current_year:
+            past_service_date.append(item)
+        elif year <= current_year:
+            if month < current_month:
+                past_service_date.append(item)
+            elif month <= current_month:
+                if day < current_day:
+                    past_service_date.append(item)
+                else:
+                    continue
+
+    # Writes PastServiceDateInventory.csv
+    with open("PastServiceDateInventory.csv", "w", newline="") as past_service_date_file:
+        # Sorts past_service_date by date
+        past_service_date_by_date = sorted(past_service_date, key=sort_by_date)
+        past_service_date_writer = csv.writer(past_service_date_file)
+        past_service_date_writer.writerows(past_service_date_by_date)
+
+
