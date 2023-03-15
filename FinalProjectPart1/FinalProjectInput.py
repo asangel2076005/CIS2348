@@ -47,7 +47,7 @@ def sort_by_name_date(name_date):
 
 
 def sort_by_id(i_d):
-    return i_d[0]
+    return int(i_d[0])
 
 
 def sort_by_price(price):
