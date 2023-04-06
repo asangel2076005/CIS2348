@@ -19,10 +19,6 @@ class CsvFiles:
         sorted_dict = dict(sorted(self.dict.items(), key=sort_by_name))
         return sorted_dict
 
-    def output_items(self):
-        for keys, values in self.sorted_dict().items():
-            print(f"{keys}: {', '.join(values)}")
-
     def list_of_items(self):
         list_of_items = list(self.sorted_dict().items())
         return list_of_items
