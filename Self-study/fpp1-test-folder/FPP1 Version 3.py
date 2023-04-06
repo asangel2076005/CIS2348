@@ -109,39 +109,22 @@ if __name__ == "__main__":
         full_inventory_writer = csv.writer(full_inventory_file)
         full_inventory_writer.writerows(full_inventory_by_dates)
 
-    # This section separates full inventory by devices: tower, laptop, and phones
-    laptop_list = []
-    phone_list = []
-    tower_list = []
-    for devices in full_inventory:
-        information_list = [devices[0], devices[1], devices[3], devices[4], devices[5]]
-        if devices[2] == "laptop":
-            laptop_list.append(information_list)
-        elif devices[2] == "phone":
-            phone_list.append(information_list)
-        elif devices[2] == "tower":
-            tower_list.append(information_list)
+    # Make Device Inventory for each items
+    device_inventory_dict = {}
+    for item in full_inventory:
+        category = item[2]
+        if category in device_inventory_dict:
+            device_inventory_dict[category].append(item)
+        else:
+            device_inventory_dict[category] = [item]
 
-    # Writes LaptopInventory.csv
-    with open("LaptopInventory.csv", "w", newline="") as laptop_inventory_file:
-        # Sorts laptop_inventory by id
-        laptop_inventory_by_id = sorted(laptop_list, key=sort_by_id)
-        laptop_inventory_writer = csv.writer(laptop_inventory_file)
-        laptop_inventory_writer.writerows(laptop_inventory_by_id)
-
-    # Writes PhoneInventory.csv
-    with open("PhoneInventory.csv", "w", newline="") as phone_inventory_file:
-        # Sorts phone_inventory by id
-        phone_inventory_by_id = sorted(phone_list, key=sort_by_id)
-        phone_inventory_writer = csv.writer(phone_inventory_file)
-        phone_inventory_writer.writerows(phone_inventory_by_id)
-
-    # Writes TowerInventory.csv
-    with open("TowerInventory.csv", "w", newline="") as tower_inventory_file:
-        # Sorts tower_inventory by id
-        tower_inventory_by_id = sorted(tower_list, key=sort_by_id)
-        tower_inventory_writer = csv.writer(tower_inventory_file)
-        tower_inventory_writer.writerows(tower_inventory_by_id)
+    # Write CSV files for each devices
+    for device, data in device_inventory_dict.items():
+        sorted_device_inventory = sorted(data, key=sort_by_id)
+        with open(f"{device.capitalize()}Inventory.csv", "w", newline="") as device_inventory:
+            device_inventory_writer = csv.writer(device_inventory)
+            for devices in sorted_device_inventory:
+                device_inventory_writer.writerow([devices[0], devices[1], devices[3], devices[4], devices[5]])
 
     # Stores past service dates based on today's date into a new list
     current_month, current_day, current_year = get_current_date()
