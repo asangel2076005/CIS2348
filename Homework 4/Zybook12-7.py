@@ -1,13 +1,15 @@
+# Angelo Angel (2076005)
+
 def get_age():
-    age = int(input())
-    if not (age >= 18) or not (age <= 75):
+    age_sample = int(input())
+    if not (age_sample >= 18) or not (age_sample <= 75):
         raise ValueError("Invalid age.")
-    return age
+    return age_sample
 
 
-def fat_burning_heart_rate(age):
-    heart_rate = (220 - age) * 0.70
-    return heart_rate
+def fat_burning_heart_rate(age_sample):
+    heart_rate_sample = (220 - age_sample) * 0.70
+    return heart_rate_sample
 
 
 if __name__ == "__main__":
@@ -21,4 +23,3 @@ if __name__ == "__main__":
         print(error)
         print("Could not calculate heart rate info.")
         print()
-
