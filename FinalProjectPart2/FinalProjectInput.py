@@ -237,9 +237,3 @@ if __name__ == "__main__":
 
                 except IndexError:
                     print()
-
-                # Delete this
-                print("Considered Items")
-                for i in considered_items:
-                    print(i)
-                print()
